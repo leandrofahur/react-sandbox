@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from "react";
+import { Link, NavLink } from "react-router-dom";
 import "./index.css";
 
 const Navbar = () => {
@@ -31,33 +32,32 @@ const Navbar = () => {
     return (
       <div className="ui secondary menu">
         <div className="right menu">
-          <a
+          <NavLink
             id="home"
-            href="/"
-            className={`item ${itemName === "home" ? "active" : null}`}
-            onClick={(e) => {
-              e.preventDefault();
-              setItemName(e.target.attributes[0].value);
-            }}
+            exact
+            to="/"
+            className="item"
+            activeClassName={"active"}
           >
             Home
-          </a>
+          </NavLink>
 
-          <a
+          <NavLink
             id="about"
-            href="/about"
-            className={`item ${itemName === "about" ? "active" : ""}`}
-            onClick={(e) => {
-              e.preventDefault();
-              setItemName(e.target.attributes[0].value);
-            }}
+            to="/message"
+            className="item"
+            activeClassName={"active"}
+            // onClick={(e) => {
+            // e.preventDefault();
+            // setItemName(e.target.attributes[0].value);
+            // }}
           >
             About Us
-          </a>
+          </NavLink>
 
-          <a
+          {/* <Link
             id="contact"
-            href="/contact"
+            to="/contact"
             className={`item ${itemName === "contact" ? "active" : ""}`}
             onClick={(e) => {
               e.preventDefault();
@@ -65,8 +65,8 @@ const Navbar = () => {
             }}
           >
             Contact
-          </a>
-          <a
+          </Link>
+          <Link
             id="login"
             to="/"
             className={`item ${itemName === "login" ? "active" : null}`}
@@ -76,72 +76,73 @@ const Navbar = () => {
             }}
           >
             Login
-          </a>
+          </Link> */}
         </div>
       </div>
     );
   };
 
-  const navbarTablet = () => {
-    return (
-      <div ref={navbarRef} className="ui secondary pointing menu">
-        <button
-          className="item  floating right"
-          onClick={(e) => {
-            e.preventDefault();
-            setItemName(e.target.attributes[0].value);
-            setIsSidebarVisible(true);
-          }}
-        >
-          <i className="bars icon"></i>
-          {console.log(isSidebarVisible)}
-        </button>
-        <div
-          className={`ui right vertical wide sidebar icon menu ${
-            isSidebarVisible ? "visible" : null
-          }`}
-        >
-          <div className="dimmed pusher">
-            <a
-              id="home"
-              href="/"
-              className={`item ${itemName === "home" ? "active" : null}`}
-              onClick={(e) => {
-                e.preventDefault();
-                setItemName(e.target.attributes[0].value);
-              }}
-            >
-              Home
-            </a>
-            <a
-              id="about"
-              href="/"
-              className={`item ${itemName === "about" ? "active" : null}`}
-              onClick={(e) => {
-                e.preventDefault();
-                setItemName(e.target.attributes[0].value);
-              }}
-            >
-              About Us
-            </a>
-            <a
-              id="contact"
-              thref="/"
-              className={`item ${itemName === "contact" ? "active" : null}`}
-              onClick={(e) => {
-                e.preventDefault();
-                setItemName(e.target.attributes[0].value);
-              }}
-            >
-              Contact
-            </a>
-          </div>
-        </div>
-      </div>
-    );
-  };
+  // const navbarTablet = () => {
+  //   return (
+  //     <div ref={navbarRef} className="ui secondary pointing menu">
+  //       <button
+  //         className="item  floating right"
+  //         onClick={(e) => {
+  //           e.preventDefault();
+  //           setItemName(e.target.attributes[0].value);
+  //           setIsSidebarVisible(true);
+  //         }}
+  //       >
+  //         <i className="bars icon"></i>
+  //         {console.log(isSidebarVisible)}
+  //       </button>
+  //       <div
+  //         className={`ui right vertical wide sidebar icon menu ${
+  //           isSidebarVisible ? "visible" : null
+  //         }`}
+  //       >
+  //         <div className="dimmed pusher">
+  //           <a
+  //             id="home"
+  //             href="/"
+  //             className={`item ${itemName === "home" ? "active" : null}`}
+  //             onClick={(e) => {
+  //               e.preventDefault();
+  //               setItemName(e.target.attributes[0].value);
+  //             }}
+  //           >
+  //             Home
+  //           </a>
+  //           <a
+  //             id="about"
+  //             href="/"
+  //             className={`item ${itemName === "about" ? "active" : null}`}
+  //             onClick={(e) => {
+  //               e.preventDefault();
+  //               setItemName(e.target.attributes[0].value);
+  //             }}
+  //           >
+  //             About Us
+  //           </a>
+  //           <a
+  //             id="contact"
+  //             thref="/"
+  //             className={`item ${itemName === "contact" ? "active" : null}`}
+  //             onClick={(e) => {
+  //               e.preventDefault();
+  //               setItemName(e.target.attributes[0].value);
+  //             }}
+  //           >
+  //             Contact
+  //           </a>
+  //         </div>
+  //       </div>
+  //     </div>
+  //   );
+  // };
 
-  return <>{width >= BREAKPOINT ? navbarWeb() : navbarTablet}</>;
+  // return <>{width >= BREAKPOINT ? navbarWeb() : navbarTablet()}</>;
+  return <>{width >= BREAKPOINT ? navbarWeb() : null}</>;
 };
 
 export default Navbar;
