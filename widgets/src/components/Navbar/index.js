@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import "./index.css";
 
 const Navbar = () => {
@@ -31,50 +30,52 @@ const Navbar = () => {
   const navbarWeb = () => {
     return (
       <div className="ui secondary menu">
-        <a
-          id="home"
-          href="/"
-          className={`item ${itemName === "home" ? "active" : null}`}
-          onClick={(e) => {
-            e.preventDefault();
-            setItemName(e.target.attributes[0].value);
-          }}
-        >
-          Home
-        </a>
-        <a
-          id="about"
-          href="/"
-          className={`item ${itemName === "about" ? "active" : null}`}
-          onClick={(e) => {
-            e.preventDefault();
-            setItemName(e.target.attributes[0].value);
-          }}
-        >
-          About Us
-        </a>
-        <a
-          id="contact"
-          thref="/"
-          className={`item ${itemName === "contact" ? "active" : null}`}
-          onClick={(e) => {
-            e.preventDefault();
-            setItemName(e.target.attributes[0].value);
-          }}
-        >
-          Contact
-        </a>
         <div className="right menu">
           <a
-            id="logout"
+            id="home"
             href="/"
-            className={`item ${itemName === "logout" ? "active" : null}`}
+            className={`item ${itemName === "home" ? "active" : null}`}
             onClick={(e) => {
               e.preventDefault();
               setItemName(e.target.attributes[0].value);
             }}
           >
-            Logout
+            Home
+          </a>
+
+          <a
+            id="about"
+            href="/about"
+            className={`item ${itemName === "about" ? "active" : ""}`}
+            onClick={(e) => {
+              e.preventDefault();
+              setItemName(e.target.attributes[0].value);
+            }}
+          >
+            About Us
+          </a>
+
+          <a
+            id="contact"
+            href="/contact"
+            className={`item ${itemName === "contact" ? "active" : ""}`}
+            onClick={(e) => {
+              e.preventDefault();
+              setItemName(e.target.attributes[0].value);
+            }}
+          >
+            Contact
+          </a>
+          <a
+            id="login"
+            to="/"
+            className={`item ${itemName === "login" ? "active" : null}`}
+            onClick={(e) => {
+              e.preventDefault();
+              setItemName(e.target.attributes[0].value);
+            }}
+          >
+            Login
           </a>
         </div>
       </div>
@@ -140,7 +141,7 @@ const Navbar = () => {
     );
   };
 
-  return <>{width >= BREAKPOINT ? navbarWeb() : navbarTablet()}</>;
+  return <>{width >= BREAKPOINT ? navbarWeb() : navbarTablet}</>;
 };
 
 export default Navbar;

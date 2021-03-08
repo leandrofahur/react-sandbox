@@ -16,12 +16,12 @@
   background-color: #444;
 } */
 
-.ui.secondary.menu > a.item:hover {
+.ui.secondary.menu .item:hover {
   color: yellow;
   background-color: #444;
 }
 
-.ui.secondary.menu a.item.active {
+.ui.secondary.menu .item.active {
   color: yellow;
   background-color: #444;
 }
