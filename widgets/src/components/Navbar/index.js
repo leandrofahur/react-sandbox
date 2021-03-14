@@ -3,30 +3,30 @@ import { Link, NavLink } from "react-router-dom";
 import "./index.css";
 
 const Navbar = () => {
-  const [itemName, setItemName] = useState("");
+  // const [itemName, setItemName] = useState("");
   const [width, setWidth] = useState(window.innerWidth);
-  const [isSidebarVisible, setIsSidebarVisible] = useState(false);
-  const navbarRef = useRef();
+  // const [isSidebarVisible, setIsSidebarVisible] = useState(false);
+  // const navbarRef = useRef();
   const BREAKPOINT = 760;
 
-  useEffect(() => {
-    const handleWindowResize = () => setWidth(window.innerWidth);
-    window.addEventListener("resize", () => setWidth(window.innerWidth));
-    return () => window.removeEventListener("resize", handleWindowResize);
-  }, []);
+  // useEffect(() => {
+  //   const handleWindowResize = () => setWidth(window.innerWidth);
+  //   window.addEventListener("resize", () => setWidth(window.innerWidth));
+  //   return () => window.removeEventListener("resize", handleWindowResize);
+  // }, []);
 
-  useEffect(() => {
-    const onBodyClick = (e) => {
-      if (navbarRef.current && navbarRef.current.contains(e.target)) {
-        return;
-      }
-      setIsSidebarVisible(false);
-    };
-    document.body.addEventListener("click", onBodyClick);
-    return () => {
-      document.removeEventListener("click", onBodyClick);
-    };
-  }, []);
+  // useEffect(() => {
+  //   const onBodyClick = (e) => {
+  //     if (navbarRef.current && navbarRef.current.contains(e.target)) {
+  //       return;
+  //     }
+  //     setIsSidebarVisible(false);
+  //   };
+  //   document.body.addEventListener("click", onBodyClick);
+  //   return () => {
+  //     document.removeEventListener("click", onBodyClick);
+  //   };
+  // }, []);
 
   const navbarWeb = () => {
     return (
@@ -37,7 +37,7 @@ const Navbar = () => {
             exact
             to="/"
             className="item"
-            activeClassName={"active"}
+            // activeClassName={"active"}
           >
             Home
           </NavLink>
@@ -46,7 +46,7 @@ const Navbar = () => {
             id="about"
             to="/message"
             className="item"
-            activeClassName={"active"}
+            // activeClassName={"active"}
             // onClick={(e) => {
             // e.preventDefault();
             // setItemName(e.target.attributes[0].value);
