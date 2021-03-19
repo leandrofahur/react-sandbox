@@ -1,41 +1,30 @@
 import React from "react";
 
-const Dropdown = () => {
+const Dropdown = ({ label, itemList }) => {
+  const renderedItemList = itemList.map((item) => {
+    return (
+      <a key={`${"item " + item}`} className="item">
+        {item}
+      </a>
+    );
+  });
+
   return (
-    <div className="ui menu">
-      <a className="item">Home</a>
-      <div className="ui pointing dropdown inverted link item">
-        <span className="text">Shopping</span>
-        <i className="dropdown icon"></i>
-        <div className="menu">
-          <div className="header">Categories</div>
-          <div className="item">
-            <i className="dropdown icon"></i>
-            <span className="text">Clothing</span>
-            <div className="menu">
-              <div className="header">Mens</div>
-              <div className="item">Shirts</div>
-              <div className="item">Pants</div>
-              <div className="item">Jeans</div>
-              <div className="item">Shoes</div>
-              <div className="divider"></div>
-              <div className="header">Womens</div>
-              <div className="item">Dresses</div>
-              <div className="item">Shoes</div>
-              <div className="item">Bags</div>
-            </div>
-          </div>
-          <div className="item">Home Goods</div>
-          <div className="item">Bedroom</div>
-          <div className="divider"></div>
-          <div className="header">Order</div>
-          <div className="item">Status</div>
-          <div className="item">Cancellations</div>
+    <>
+      <div className="ui menu">
+        {/* <a className="item">File</a> */}
+
+        <div className="ui dropdown visible active item">
+          <span className="text">{label}</span>
+          <i className="dropdown icon" style={{ color: "black" }}></i>
+
+          <div className="menu visible transition">{renderedItemList}</div>
         </div>
+
+        {console.log(renderedItemList)}
+        {/* <a className="item">Selection</a> */}
       </div>
-      <a className="item">Forums</a>
-      <a className="item">Contact Us</a>
-    </div>
+    </>
   );
 };
 

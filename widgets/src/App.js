@@ -8,13 +8,15 @@ import Sidebar from "./components/Sidebar";
 import Main from "./components/Main";
 import Dropdown from "./components/Dropbox";
 
+const itemList = ["Option 01", "Option 02"];
+
 const App = () => {
   return (
     <>
       {/* <Router>
         <Routes></Routes>
       </Router> */}
-      <Dropdown />
+      <Dropdown label="Editor" itemList={itemList} />
     </>
   );
 };
