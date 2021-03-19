@@ -1,6 +1,22 @@
-import React from "react";
+import React, { useEffect, useRef, useState } from "react";
 
 const Dropdown = ({ label, itemList }) => {
+  const [toggle, setToggle] = useState(false);
+  const dropdownRef = useRef();
+
+  useEffect(() => {
+    const onBodyClick = (e) => {
+      if (dropdownRef.current && dropdownRef.current.contains(e.target)) return;
+      setToggle(false);
+    };
+
+    document.body.addEventListener("click", onBodyClick);
+
+    return () => {
+      document.body.removeEventListener("click", onBodyClick);
+    };
+  }, []);
+
   const renderedItemList = itemList.map((item) => {
     return (
       <a key={`${"item " + item}`} className="item">
@@ -11,17 +27,23 @@ const Dropdown = ({ label, itemList }) => {
 
   return (
     <>
-      <div className="ui menu">
+      <div className="ui menu" ref={dropdownRef}>
         {/* <a className="item">File</a> */}
 
-        <div className="ui dropdown visible active item">
+        <div
+          className={`ui dropdown ${toggle ? "visible active" : null} item`}
+          onClick={() => {
+            setToggle(!toggle);
+          }}
+        >
           <span className="text">{label}</span>
           <i className="dropdown icon" style={{ color: "black" }}></i>
 
-          <div className="menu visible transition">{renderedItemList}</div>
+          <div className={`menu ${toggle ? "visible transition" : null}`}>
+            {renderedItemList}
+          </div>
         </div>
 
-        {console.log(renderedItemList)}
         {/* <a className="item">Selection</a> */}
       </div>
     </>
