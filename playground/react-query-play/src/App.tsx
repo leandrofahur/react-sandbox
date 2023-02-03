@@ -26,6 +26,14 @@ export function App() {
 
   const { data, isLoading, isError } = useQuery("Todos", fetchTodos);
 
+  if (isLoading) {
+    return <h3>Loading...</h3>;
+  }
+
+  if (isError) {
+    return <h3>Oops, something went wrong!</h3>;
+  }
+
   return (
     <div>
       <ul>
