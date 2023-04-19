@@ -1,6 +1,5 @@
 import React from "react";
 import "./App.scss";
-import MyStepper from "./components/MyStepper";
 
 const steps = [
   {
@@ -17,11 +16,7 @@ const steps = [
   },
 ];
 function App() {
-  return (
-    <div className="App">
-      <MyStepper steps={steps} activeStep={1} />
-    </div>
-  );
+  return <div className="App"></div>;
 }
 
 export default App;
