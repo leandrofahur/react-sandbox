@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { Button, Box } from "@mui/material";
-import OuterStepper from "./components/OuterStepper/OuterStepper";
+import OuterStepper from "./components/MyStepper/OuterStepper/OuterStepper";
 
 import styles from "./App.module.scss";
 
@@ -52,19 +52,6 @@ function App() {
   return (
     <>
       <OuterStepper steps={steps} />
-
-      {/* <Box className={styles.boxCtaStyling}>
-        <Button disabled={isFirstInnerStep} onClick={handlePreviousInnerStep}>
-          Inner Previous
-        </Button>
-        <Button
-          variant="contained"
-          onClick={handleNextInnerStep}
-          disabled={isLastInnerStep}
-        >
-          Inner Next
-        </Button>
-      </Box> */}
     </>
   );
 }
