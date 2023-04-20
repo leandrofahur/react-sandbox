@@ -1,6 +1,8 @@
 import React, { useState } from "react";
+import { Button, Box } from "@mui/material";
 import OuterStepper from "./components/OuterStepper/OuterStepper";
-import "./App.scss";
+
+import styles from "./App.module.scss";
 
 const steps = [
   {
@@ -8,6 +10,15 @@ const steps = [
     innerSteps: [
       {
         label: "Subitem 1",
+      },
+      {
+        label: "Subitem 2",
+      },
+      {
+        label: "Subitem 3",
+      },
+      {
+        label: "Subitem 4",
       },
     ],
   },
@@ -27,27 +38,34 @@ const steps = [
   },
   {
     label: "Third item",
-    innerSteps: [],
+    innerSteps: [
+      {
+        label: "Subitem 1",
+      },
+      {
+        label: "Subitem 2",
+      },
+    ],
   },
 ];
 function App() {
-  const [activeStep, setActiveStep] = useState(0);
-
-  const handleNextOuterStep = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep + 1);
-  };
-
-  const handlePreviousOuterStep = () => {
-    setActiveStep((prevActiveStep) => prevActiveStep - 1);
-  };
-
   return (
-    <OuterStepper
-      outerSteps={steps}
-      activeStep={activeStep}
-      handleNextOuterStep={handleNextOuterStep}
-      handlePreviousOuterStep={handlePreviousOuterStep}
-    />
+    <>
+      <OuterStepper steps={steps} />
+
+      {/* <Box className={styles.boxCtaStyling}>
+        <Button disabled={isFirstInnerStep} onClick={handlePreviousInnerStep}>
+          Inner Previous
+        </Button>
+        <Button
+          variant="contained"
+          onClick={handleNextInnerStep}
+          disabled={isLastInnerStep}
+        >
+          Inner Next
+        </Button>
+      </Box> */}
+    </>
   );
 }
 
