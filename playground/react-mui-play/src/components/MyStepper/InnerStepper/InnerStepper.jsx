@@ -3,6 +3,8 @@ import PropTypes from "prop-types";
 
 import { Box, Stepper, Step, StepLabel } from "@mui/material";
 
+import { checkIfNAN } from "../../../state/stepperSlice";
+
 import styles from "./InnerStepper.module.scss";
 
 function InnerStepper(props) {
@@ -22,8 +24,12 @@ function InnerStepper(props) {
 }
 
 InnerStepper.propTypes = {
-  steps: PropTypes.array.isRequired,
+  steps: PropTypes.array,
   activeStep: PropTypes.number.isRequired,
+};
+
+InnerStepper.defaultProps = {
+  steps: [],
 };
 
 export default InnerStepper;
