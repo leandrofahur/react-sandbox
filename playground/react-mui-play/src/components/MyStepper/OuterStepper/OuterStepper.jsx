@@ -36,7 +36,7 @@ function OuterStepper(props) {
     const currentInnerStepsLength = steps[activeOuterStep].innerSteps.length;
     if (activeInnerStep === currentInnerStepsLength - 1) {
       dispatch(nextOuterStep({ innerStepsLength: currentInnerStepsLength }));
-      dispatch(nextInnerStep({ innerStepsLength: currentInnerStepsLength }));
+      dispatch(setActiveInnerStep(0));
     } else {
       dispatch(nextInnerStep({ innerStepsLength: currentInnerStepsLength }));
     }
