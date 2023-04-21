@@ -10,54 +10,17 @@ import {
   nextInnerStep,
   prevInnerStep,
 } from "../../../state/stepperSlice";
+import InnerStepper from "../InnerStepper/InnerStepper";
 
 import styles from "./OuterStepper.module.scss";
-import InnerStepper from "../InnerStepper/InnerStepper";
 
 function OuterStepper(props) {
   const { steps } = props;
 
   const dispatch = useDispatch();
-  const activeOuterStep = useSelector((state) => state.stepper.activeOuterStep);
-  const activeInnerStep = useSelector((state) => state.stepper.activeInnerStep);
-
-  const handleNext = () => {
-    if (activeInnerStep === steps[activeOuterStep].innerSteps.length - 1) {
-      // Last inner step, move to next outer step
-      dispatch(
-        nextOuterStep({
-          innerStepsLength: steps[activeOuterStep + 1].innerSteps.length,
-        })
-      );
-      dispatch(prevInnerStep());
-    } else {
-      // Move to next inner step
-      dispatch(
-        nextInnerStep({
-          innerStepsLength: steps[activeOuterStep].innerSteps.length,
-        })
-      );
-    }
-  };
-
-  const handlePrevious = () => {
-    if (activeInnerStep === 0) {
-      // First inner step, move to previous outer step
-      dispatch(
-        prevOuterStep({
-          prevInnerStepsLength: steps[activeOuterStep - 1].innerSteps.length,
-        })
-      );
-      dispatch(
-        nextInnerStep({
-          innerStepsLength: steps[activeOuterStep - 1].innerSteps.length,
-        })
-      );
-    } else {
-      // Move to previous inner step
-      dispatch(prevInnerStep());
-    }
-  };
+  const { activeOuterStep, activeInnerStep } = useSelector(
+    (state) => state.stepper
+  );
 
   const isLastOuterStep = activeOuterStep === steps.length - 1;
   const isLastInnerStep =
@@ -65,29 +28,41 @@ function OuterStepper(props) {
   const isFirstOuterStep = activeOuterStep === 0;
   const isFirstInnerStep = activeInnerStep === 0;
 
+  const handleNext = () => {
+    const currentInnerStepsLength = steps[activeOuterStep].innerSteps.length;
+    if (activeInnerStep === currentInnerStepsLength - 1) {
+      dispatch(nextOuterStep({ innerStepsLength: currentInnerStepsLength }));
+      dispatch(nextInnerStep({ innerStepsLength: currentInnerStepsLength }));
+    } else {
+      dispatch(nextInnerStep({ innerStepsLength: currentInnerStepsLength }));
+    }
+  };
+
+  const handlePrevious = () => {
+    if (activeInnerStep === 0) {
+      dispatch(prevOuterStep(steps[activeOuterStep - 1].innerSteps.length - 1));
+      dispatch(prevInnerStep(steps[activeOuterStep - 1].innerSteps.length - 1));
+    } else {
+      dispatch(prevInnerStep());
+    }
+  };
+
   return (
     <Box className={styles.boxStepStyling}>
-      <Stepper activeStep={activeOuterStep} orientation="vertical">
-        {steps.map((step, index) => {
-          const stepProps = {};
-          const labelProps = {};
-
-          return (
-            <>
-              <Step key={step.label} {...stepProps}>
-                <StepLabel {...labelProps}>{step.label}</StepLabel>
-                {/* {step.innerSteps.length > 0 && ( */}
-                <InnerStepper
-                  steps={step.innerSteps}
-                  activeStep={activeInnerStep}
-                  handleNext={handleNext}
-                  handlePrevious={handlePrevious}
-                />
-                {/* )} */}
-              </Step>
-            </>
-          );
-        })}
+      <Stepper
+        activeStep={activeOuterStep}
+        alternativeLabel
+        orientation="vertical"
+      >
+        {steps.map((step, index) => (
+          <Step key={index}>
+            <StepLabel>{step.label}</StepLabel>
+          </Step>
+        ))}
+        <InnerStepper
+          steps={steps[activeOuterStep].innerSteps}
+          activeStep={activeInnerStep}
+        />
       </Stepper>
       <Box className={styles.boxCtaStyling}>
         <Button
