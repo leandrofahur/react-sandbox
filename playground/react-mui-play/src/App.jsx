@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-import { Button, Box } from "@mui/material";
+import React from "react";
 import OuterStepper from "./components/MyStepper/OuterStepper/OuterStepper";
 
 import styles from "./App.module.scss";
