@@ -9,6 +9,8 @@ import {
   prevOuterStep,
   nextInnerStep,
   prevInnerStep,
+  setActiveOuterStep,
+  setActiveInnerStep,
 } from "../../../state/stepperSlice";
 import InnerStepper from "../InnerStepper/InnerStepper";
 
@@ -28,7 +30,7 @@ function OuterStepper(props) {
   const isFirstOuterStep = activeOuterStep === 0;
   const isFirstInnerStep = activeInnerStep === 0;
 
-  // console.log({ activeOuterStep, activeInnerStep });
+  console.log({ activeOuterStep, activeInnerStep });
 
   const handleNext = () => {
     const currentInnerStepsLength = steps[activeOuterStep].innerSteps.length;
@@ -42,10 +44,16 @@ function OuterStepper(props) {
 
   const handlePrevious = () => {
     if (activeInnerStep === 0) {
-      dispatch(prevOuterStep(steps[activeOuterStep - 1].innerSteps.length - 1));
+      const prevOuterStepIndex = activeOuterStep - 1;
+      dispatch(prevOuterStep(prevOuterStepIndex));
+      const lastInnerStepIndex =
+        steps[prevOuterStepIndex].innerSteps.length - 1;
+      dispatch(prevInnerStep(lastInnerStepIndex));
+      dispatch(setActiveOuterStep(prevOuterStepIndex));
+      dispatch(setActiveInnerStep(lastInnerStepIndex));
+    } else if (typeof activeInnerStep === "number" && activeInnerStep >= 0) {
       dispatch(prevInnerStep());
-    } else {
-      dispatch(prevInnerStep());
+      dispatch(setActiveInnerStep(activeInnerStep - 1));
     }
   };
 

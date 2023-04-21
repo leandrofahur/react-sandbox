@@ -43,14 +43,20 @@ export const stepperSlice = createSlice({
           : state.activeInnerStep - 1;
     },
     checkIfNAN: (state, action) => {
-      const { activeOuterStepLength } = action.payload;
+      const { activeInnerStep } = action.payload;
       if (
-        isNaN(state.activeOuterStep) ||
-        state.activeOuterStep < 0 ||
-        state.activeOuterStep > activeOuterStepLength - 1
+        isNaN(state.activeInnerStep) ||
+        state.activeInnerStep < 0 ||
+        state.activeInnerStep > activeInnerStep - 1
       ) {
-        state.activeOuterStep = 0;
+        state.activeInnerStep = 0;
       }
+    },
+    setActiveOuterStep: (state, action) => {
+      state.activeOuterStep = action.payload;
+    },
+    setActiveInnerStep: (state, action) => {
+      state.activeInnerStep = action.payload;
     },
   },
 });
@@ -61,5 +67,7 @@ export const {
   nextInnerStep,
   prevInnerStep,
   checkIfNAN,
+  setActiveOuterStep,
+  setActiveInnerStep,
 } = stepperSlice.actions;
 export default stepperSlice.reducer;

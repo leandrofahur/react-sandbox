@@ -2,7 +2,6 @@ import React from "react";
 import OuterStepper from "./components/MyStepper/OuterStepper/OuterStepper";
 
 import styles from "./App.module.scss";
-import CustomStepper from "./components/CustomStepper/CustomStepper";
 
 const steps = [
   {
@@ -53,7 +52,6 @@ function App() {
   return (
     <>
       <OuterStepper steps={steps} />
-      {/* <CustomStepper steps={steps} /> */}
     </>
   );
 }
