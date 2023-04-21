@@ -1,58 +1,19 @@
 import React from "react";
+
+import { Stack } from "@mui/material";
+
 import OuterStepper from "./components/MyStepper/OuterStepper/OuterStepper";
+import StepperProgress from "./components/StepperProgress/StepperProgress";
 
+import { steps } from "./constants/steps";
 import styles from "./App.module.scss";
-
-const steps = [
-  {
-    label: "First item",
-    innerSteps: [
-      {
-        label: "Subitem 1",
-      },
-      {
-        label: "Subitem 2",
-      },
-      {
-        label: "Subitem 3",
-      },
-      {
-        label: "Subitem 4",
-      },
-    ],
-  },
-  {
-    label: "Second item",
-    innerSteps: [
-      {
-        label: "Subitem 1",
-      },
-      {
-        label: "Subitem 2",
-      },
-      {
-        label: "Subitem 3",
-      },
-    ],
-  },
-  {
-    label: "Third item",
-    innerSteps: [
-      {
-        label: "Subitem 1",
-      },
-      {
-        label: "Subitem 2",
-      },
-    ],
-  },
-];
 
 function App() {
   return (
-    <>
+    <Stack direction="column" spacing={10}>
       <OuterStepper steps={steps} />
-    </>
+      <StepperProgress step={steps[0].label} />
+    </Stack>
   );
 }
 

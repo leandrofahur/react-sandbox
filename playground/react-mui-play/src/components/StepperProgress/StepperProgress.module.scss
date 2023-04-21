@@ -1,0 +1,23 @@
+.boxStepStyling {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+
+  .paperStepStyling {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 3px;
+    background-color: #333;
+    width: 228px;
+    height: 128px;
+  }
+}
+
+.boxCtaStyling {
+  display: flex;
+  justify-content: flex-end;
+  width: 100%;
+  padding-top: 50px;
+}
