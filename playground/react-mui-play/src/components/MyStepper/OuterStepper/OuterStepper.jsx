@@ -3,59 +3,17 @@ import PropTypes from "prop-types";
 
 import { Button, Box, Stepper, Step, StepLabel } from "@mui/material";
 
-import { useSelector, useDispatch } from "react-redux";
-// import {
-//   nextOuterStep,
-//   prevOuterStep,
-//   nextInnerStep,
-//   prevInnerStep,
-//   setActiveOuterStep,
-//   setActiveInnerStep,
-// } from "../../../state/stepperSlice";
+import { useSelector } from "react-redux";
 import InnerStepper from "../InnerStepper/InnerStepper";
 
 import styles from "./OuterStepper.module.scss";
 
 function OuterStepper(props) {
-  const { steps, activeStep } = props;
+  const { steps } = props;
 
-  // const dispatch = useDispatch();
   const { activeOuterStep, activeInnerStep } = useSelector(
     (state) => state.stepper
   );
-
-  // const isLastOuterStep = activeOuterStep === steps.length - 1;
-  // const isLastInnerStep =
-  //   activeInnerStep === steps[activeOuterStep].innerSteps.length - 1;
-  // const isFirstOuterStep = activeOuterStep === 0;
-  // const isFirstInnerStep = activeInnerStep === 0;
-
-  // console.log({ activeOuterStep, activeInnerStep });
-
-  // const handleNext = () => {
-  //   const currentInnerStepsLength = steps[activeOuterStep].innerSteps.length;
-  //   if (activeInnerStep === currentInnerStepsLength - 1) {
-  //     dispatch(nextOuterStep({ innerStepsLength: currentInnerStepsLength }));
-  //     dispatch(setActiveInnerStep(0));
-  //   } else {
-  //     dispatch(nextInnerStep({ innerStepsLength: currentInnerStepsLength }));
-  //   }
-  // };
-
-  // const handlePrevious = () => {
-  //   if (activeInnerStep === 0) {
-  //     const prevOuterStepIndex = activeOuterStep - 1;
-  //     dispatch(prevOuterStep(prevOuterStepIndex));
-  //     const lastInnerStepIndex =
-  //       steps[prevOuterStepIndex].innerSteps.length - 1;
-  //     dispatch(prevInnerStep(lastInnerStepIndex));
-  //     dispatch(setActiveOuterStep(prevOuterStepIndex));
-  //     dispatch(setActiveInnerStep(lastInnerStepIndex));
-  //   } else if (typeof activeInnerStep === "number" && activeInnerStep >= 0) {
-  //     dispatch(prevInnerStep());
-  //     dispatch(setActiveInnerStep(activeInnerStep - 1));
-  //   }
-  // };
 
   return (
     <Box className={styles.boxStepStyling}>
@@ -74,21 +32,6 @@ function OuterStepper(props) {
           activeStep={activeInnerStep}
         />
       </Stepper>
-      {/* <Box className={styles.boxCtaStyling}>
-        <Button
-          disabled={isFirstOuterStep && isFirstInnerStep}
-          onClick={handlePrevious}
-        >
-          Previous
-        </Button>
-        <Button
-          variant="contained"
-          onClick={handleNext}
-          disabled={isLastOuterStep && isLastInnerStep}
-        >
-          {isLastOuterStep ? "Finish" : "Next"}
-        </Button>
-      </Box> */}
     </Box>
   );
 }

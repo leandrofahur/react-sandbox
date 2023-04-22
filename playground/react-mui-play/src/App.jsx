@@ -30,6 +30,8 @@ function App() {
   const isFirstOuterStep = activeOuterStep === 0;
   const isFirstInnerStep = activeInnerStep === 0;
 
+  console.log({ isLastOuterStep, isLastInnerStep });
+
   const handleNext = () => {
     const currentInnerStepsLength = steps[activeOuterStep].innerSteps.length;
     if (activeInnerStep === currentInnerStepsLength - 1) {
@@ -57,7 +59,7 @@ function App() {
 
   return (
     <Stack direction="column" spacing={10}>
-      <OuterStepper steps={steps} activeStep={activeOuterStep} />
+      <OuterStepper steps={steps} />
       <StepperProgress step={steps[activeOuterStep]} />
       <Box className={styles.boxCtaStyling}>
         <Button

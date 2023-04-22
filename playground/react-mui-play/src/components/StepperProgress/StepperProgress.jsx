@@ -10,7 +10,7 @@ function StepperProgress(props) {
   const { step } = props;
 
   const { activeInnerStep } = useSelector((state) => state.stepper);
-  console.log(step.innerSteps[activeInnerStep].label);
+  // console.log(step.innerSteps[activeInnerStep].label);
 
   return (
     <Box className={styles.boxStepStyling}>
