@@ -23,14 +23,20 @@ function OuterStepper(props) {
         orientation="vertical"
       >
         {steps.map((step, index) => (
-          <Step key={index}>
-            <StepLabel>{step.label}</StepLabel>
-          </Step>
+          <>
+            <Step key={index}>
+              <StepLabel>{step.label}</StepLabel>
+            </Step>
+            <InnerStepper
+              steps={steps[activeOuterStep].innerSteps}
+              activeStep={activeInnerStep}
+            />
+          </>
         ))}
-        <InnerStepper
+        {/* <InnerStepper
           steps={steps[activeOuterStep].innerSteps}
           activeStep={activeInnerStep}
-        />
+        /> */}
       </Stepper>
     </Box>
   );

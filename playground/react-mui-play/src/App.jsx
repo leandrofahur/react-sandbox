@@ -30,8 +30,6 @@ function App() {
   const isFirstOuterStep = activeOuterStep === 0;
   const isFirstInnerStep = activeInnerStep === 0;
 
-  console.log({ isLastOuterStep, isLastInnerStep });
-
   const handleNext = () => {
     const currentInnerStepsLength = steps[activeOuterStep].innerSteps.length;
     if (activeInnerStep === currentInnerStepsLength - 1) {
