@@ -11,7 +11,7 @@ function InnerStepper(props) {
   const { steps, activeStep } = props;
 
   return (
-    <Box sx={{ paddingLeft: "50px" }}>
+    <Box className={styles.boxStepStyling}>
       <Stepper activeStep={activeStep} alternativeLabel>
         {steps.map((step, index) => (
           <Step key={index}>

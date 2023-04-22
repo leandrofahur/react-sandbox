@@ -25,13 +25,16 @@ function OuterStepper(props) {
         {steps.map((step, index) => (
           <Step key={index}>
             <StepLabel>{step.label}</StepLabel>
+            <InnerStepper
+              steps={steps[activeOuterStep].innerSteps}
+              activeStep={activeInnerStep}
+            />
           </Step>
         ))}
-
-        <InnerStepper
+        {/* <InnerStepper
           steps={steps[activeOuterStep].innerSteps}
           activeStep={activeInnerStep}
-        />
+        /> */}
       </Stepper>
     </Box>
   );
