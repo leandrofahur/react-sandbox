@@ -1,7 +1,7 @@
 import React from "react";
 import PropTypes from "prop-types";
 
-import { Button, Box, Stepper, Step, StepLabel } from "@mui/material";
+import { Box, Stepper, Step, StepLabel } from "@mui/material";
 
 import { useSelector } from "react-redux";
 import InnerStepper from "../InnerStepper/InnerStepper";
@@ -23,20 +23,15 @@ function OuterStepper(props) {
         orientation="vertical"
       >
         {steps.map((step, index) => (
-          <>
-            <Step key={index}>
-              <StepLabel>{step.label}</StepLabel>
-            </Step>
-            <InnerStepper
-              steps={steps[activeOuterStep].innerSteps}
-              activeStep={activeInnerStep}
-            />
-          </>
+          <Step key={index}>
+            <StepLabel>{step.label}</StepLabel>
+          </Step>
         ))}
-        {/* <InnerStepper
+
+        <InnerStepper
           steps={steps[activeOuterStep].innerSteps}
           activeStep={activeInnerStep}
-        /> */}
+        />
       </Stepper>
     </Box>
   );
