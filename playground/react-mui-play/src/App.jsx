@@ -1,80 +1,66 @@
-import React from "react";
+import React, { useState } from "react";
 
-import { Button, Box, Stack } from "@mui/material";
+import { Box, Button, FormControl, TextField } from "@mui/material";
 
-import { useSelector, useDispatch } from "react-redux";
-import {
-  nextOuterStep,
-  prevOuterStep,
-  nextInnerStep,
-  prevInnerStep,
-  setActiveOuterStep,
-  setActiveInnerStep,
-} from "./state/stepperSlice";
+import { Send as SendIcon, Search as SearchIcon } from "@mui/icons-material";
 
-import OuterStepper from "./components/MyStepper/OuterStepper/OuterStepper";
-import StepperProgress from "./components/StepperProgress/StepperProgress";
-
-import { steps } from "./constants/steps";
 import styles from "./App.module.scss";
 
 function App() {
-  const dispatch = useDispatch();
-  const { activeOuterStep, activeInnerStep } = useSelector(
-    (state) => state.stepper
-  );
+  const [task, setTask] = useState("");
+  const [search, setSearch] = useState("");
 
-  const isLastOuterStep = activeOuterStep === steps.length - 1;
-  const isLastInnerStep =
-    activeInnerStep === steps[activeOuterStep].innerSteps.length - 1;
-  const isFirstOuterStep = activeOuterStep === 0;
-  const isFirstInnerStep = activeInnerStep === 0;
-
-  const handleNext = () => {
-    const currentInnerStepsLength = steps[activeOuterStep].innerSteps.length;
-    if (activeInnerStep === currentInnerStepsLength - 1) {
-      dispatch(nextOuterStep({ innerStepsLength: currentInnerStepsLength }));
-      dispatch(setActiveInnerStep(0));
-    } else {
-      dispatch(nextInnerStep({ innerStepsLength: currentInnerStepsLength }));
-    }
+  const handleOnChangeddTask = (event) => {
+    setTask(event.target.value);
   };
 
-  const handlePrevious = () => {
-    if (activeInnerStep === 0) {
-      const prevOuterStepIndex = activeOuterStep - 1;
-      dispatch(prevOuterStep(prevOuterStepIndex));
-      const lastInnerStepIndex =
-        steps[prevOuterStepIndex].innerSteps.length - 1;
-      dispatch(prevInnerStep(lastInnerStepIndex));
-      dispatch(setActiveOuterStep(prevOuterStepIndex));
-      dispatch(setActiveInnerStep(lastInnerStepIndex));
-    } else if (typeof activeInnerStep === "number" && activeInnerStep >= 0) {
-      dispatch(prevInnerStep());
-      dispatch(setActiveInnerStep(activeInnerStep - 1));
-    }
+  const handleSearchTask = (event) => {
+    setSearch(event.target.value);
   };
 
   return (
-    <Stack direction="column" spacing={10}>
-      <OuterStepper steps={steps} />
-      <StepperProgress step={steps[activeOuterStep]} />
-      <Box className={styles.boxCtaStyling}>
-        <Button
-          disabled={isFirstOuterStep && isFirstInnerStep}
-          onClick={handlePrevious}
-        >
-          Previous
-        </Button>
+    <Box className={styles.boxFormContainer}>
+      <FormControl fullWidth className={styles.formControl}>
+        <TextField
+          id="add-todo"
+          label="Task"
+          variant="standard"
+          className={styles.inputText}
+          onChange={handleOnChangeddTask}
+          value={task}
+        />
         <Button
           variant="contained"
-          onClick={handleNext}
-          disabled={isLastOuterStep && isLastInnerStep}
+          startIcon={<SendIcon />}
+          className={styles.formCta}
+          onClick={() => {
+            console.log(task);
+          }}
         >
-          {isLastOuterStep ? "Finish" : "Next"}
+          Add Task
         </Button>
-      </Box>
-    </Stack>
+      </FormControl>
+      <FormControl fullWidth className={styles.formControl}>
+        <TextField
+          id="search-todo"
+          label="Search"
+          variant="standard"
+          className={styles.inputText}
+          onChange={handleSearchTask}
+          value={search}
+        />
+        <Button
+          variant="contained"
+          startIcon={<SearchIcon />}
+          className={styles.formCta}
+          onClick={() => {
+            console.log(search);
+          }}
+        >
+          Search
+        </Button>
+      </FormControl>
+    </Box>
   );
 }
 

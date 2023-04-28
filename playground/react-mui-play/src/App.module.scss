@@ -1,10 +1,25 @@
-.boxStepStyling {
-  width: 100%;
-}
+.boxFormContainer {
+  width: 500px;
+  border: 1px solid #c4c4c4;
+  border-radius: 5px;
+  background-color: #fefae0;
+  padding: 20px 30px;
 
-.boxCtaStyling {
-  display: flex;
-  justify-content: flex-end;
-  width: 100%;
-  padding-top: 50px;
+  .formControl {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 20px;
+    margin: 20px 0;
+  }
+
+  .inputText {
+    width: 100%;
+    color: #fff;
+  }
+
+  .formCta {
+    width: 150px;
+    padding: 7px 15px;
+  }
 }
