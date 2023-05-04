@@ -3,16 +3,30 @@ import "./App.css";
 
 function App() {
   const fetchTodos = async () => {
-    const response = await fetch(
-      "https://jsonplaceholder.typicode.com/todos/1"
-    );
-    return response.json();
+    const response = await fetch("https://jsonplaceholder.typicode.com/todos");
+    return await response.json();
   };
 
-  const { data } = useQuery({ queryKey: ["todos"], queryFn: fetchTodos });
-  console.log(data);
+  const { data, isLoading, isError, error } = useQuery({
+    queryKey: ["todos"],
+    queryFn: fetchTodos,
+  });
 
-  return <div>{data.title}</div>;
+  if (isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (isError) {
+    return <span>Error: {error.message}</span>;
+  }
+
+  return (
+    <ul>
+      {data.map((todo) => (
+        <li key={todo.id}>{todo.title}</li>
+      ))}
+    </ul>
+  );
 }
 
 export default App;
