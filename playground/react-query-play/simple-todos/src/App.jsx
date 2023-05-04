@@ -21,11 +21,19 @@ function App() {
   }
 
   return (
-    <ul>
+    <div>
       {data.map((todo) => (
-        <li key={todo.id}>{todo.title}</li>
+        <div key={todo.id}>
+          {todo.completed ? (
+            <p>
+              <s>Task: {todo.title}</s>
+            </p>
+          ) : (
+            <p>Task: {todo.title}</p>
+          )}
+        </div>
       ))}
-    </ul>
+    </div>
   );
 }
 
