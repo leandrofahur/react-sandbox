@@ -1,5 +1,6 @@
 import { useQuery } from "@tanstack/react-query";
 import "./App.css";
+import Todos from "./components/Todos";
 
 function App() {
   const fetchTodos = async () => {
@@ -22,17 +23,7 @@ function App() {
 
   return (
     <div>
-      {data.map((todo) => (
-        <div key={todo.id}>
-          {todo.completed ? (
-            <p>
-              <s>Task: {todo.title}</s>
-            </p>
-          ) : (
-            <p>Task: {todo.title}</p>
-          )}
-        </div>
-      ))}
+      <Todos todos={data} />
     </div>
   );
 }
